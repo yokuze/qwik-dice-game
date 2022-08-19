@@ -49,7 +49,7 @@
          <span class="total">YELLOW: {{ rowTotals[NumberRowColor.Yellow] }}</span>
          <span class="total">GREEN: {{ rowTotals[NumberRowColor.Green] }}</span>
          <span class="total">BLUE: {{ rowTotals[NumberRowColor.Blue] }}</span>
-         <span class="total">PENALITES: {{ totalPenalites }}</span>
+         <span class="total">PENALTIES: {{ totalPenalties }}</span>
       </div>
       <div class="grandTotal">
          <p class="value">{{ grandTotal }}</p>
@@ -193,12 +193,12 @@ function createPenalties() {
 }
 
 const penalties = ref(createPenalties()),
-      totalPenalites = computed(() => penalties.value.reduce((memo, p) => memo + (p.checked ? 5 : 0), 0));
+      totalPenalties = computed(() => penalties.value.reduce((memo, p) => memo + (p.checked ? 5 : 0), 0));
 
 const grandTotal = computed(() => {
    const total = Object.values(rowTotals).reduce((memo, t) => memo + t.value, 0)
 
-   return total - totalPenalites.value;
+   return total - totalPenalties.value;
 });
 
 function restartGame() {
