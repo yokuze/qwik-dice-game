@@ -4,8 +4,8 @@
 
 <script lang="ts" setup>
 import { ref, computed } from 'vue';
-import lock from './assets/lock.svg?raw';
-import unlock from './assets/unlock.svg?raw';
+import lock from '../assets/lock.svg?raw';
+import unlock from '../assets/unlock.svg?raw';
 import SquareButton from './SquareButton.vue';
 
 const locked = ref(false);
