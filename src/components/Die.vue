@@ -86,9 +86,9 @@ const dieDotColorVar = computed(() => {
    --die-width-negative: calc(-1 * var(--die-width) / 2);
    --die-transformation: calc(var(--die-width) / 2);
    --die-transformation-negative: calc(-1 * var(--die-width) / 2);
-   --dot-diameter: 16px;
-   width: 80px;
-   height: 80px;
+   --dot-diameter: calc(var(--die-width) / 5);
+   width: var(--die-width);
+   height: var(--die-width);
    margin: 8px;
 }
 

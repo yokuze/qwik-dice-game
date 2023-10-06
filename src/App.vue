@@ -3,21 +3,26 @@
       <h1>Play Dice</h1>
       <div class="gameTypes">
          <p><button class="button green" @click="gameType = GameType.ONLINE">Play online</button></p>
-         <p><button class="button blue" @click="gameType = GameType.LOCAL">Score card only</button></p>
+         <p><button class="button blue" @click="gameType = GameType.LOCAL">Score card
+         only</button></p>
+         <p><button class="button blue" @click="gameType = GameType.DICE_ONLY">Dice only</button></p>
       </div>
    </div>
    <PlayOnline v-else-if="gameType === GameType.ONLINE"></PlayOnline>
    <ScoreCard v-else-if="gameType === GameType.LOCAL" />
+   <DiceOnly v-else-if="gameType === GameType.DICE_ONLY"></DiceOnly>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import ScoreCard from './components/ScoreCard.vue';
 import PlayOnline from './components/PlayOnline.vue';
+import DiceOnly from './components/DiceOnly.vue';
 
 enum GameType {
    LOCAL = 'LOCAL',
    ONLINE = 'ONLINE',
+   DICE_ONLY = 'DICE_ONLY',
 }
 
 const gameType = ref<GameType | undefined>(undefined),

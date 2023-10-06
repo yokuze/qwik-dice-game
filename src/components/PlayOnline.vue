@@ -62,8 +62,8 @@
 
 <script setup lang="ts">
 import * as Y from 'yjs';
-import { WebrtcProvider } from 'y-webrtc';
-import { syncedStore, getYjsValue, filterArray } from "@syncedstore/core";
+import YPartyKitProvider from 'y-partykit/provider';
+import { syncedStore, getYjsValue, filterArray } from '@syncedstore/core';
 import { computed, Ref, ref, watch } from 'vue';
 import ScoreCardView from './ScoreCard.vue';
 import { createScoreCard, NumberRow, NumberRowColor, ScoreCard } from '../lib/create-score-card';
@@ -135,7 +135,7 @@ if (quickConnectCode) {
 
 class Game {
    doc: Y.Doc | Y.AbstractType<any> | undefined;
-   provider: WebrtcProvider | undefined;
+   provider: YPartyKitProvider | undefined;
    roomCode: string | undefined;
    store: Store;
    connected: Ref<boolean>;
@@ -159,8 +159,10 @@ class Game {
       this.roomCode = code;
 
       const connString = `dice-together-${code}`;
+
       this.doc = getYjsValue(this.store) as Y.Doc;
-      this.provider = new WebrtcProvider(connString, this.doc);
+
+      this.provider = new YPartyKitProvider(import.meta.env.VITE_PARTYKIT_HOST, connString, this.doc as any);
 
       this.connected.value = true;
 
